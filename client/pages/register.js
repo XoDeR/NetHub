@@ -46,7 +46,7 @@ const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 className="form-control"
-                placeholder="Enter name"
+                placeholder="Enter email"
               />
             </div>
 
@@ -59,7 +59,7 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 className="form-control"
-                placeholder="Enter name"
+                placeholder="Enter password"
               />
             </div>
 
