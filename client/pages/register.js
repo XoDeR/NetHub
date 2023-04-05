@@ -24,6 +24,10 @@ const Register = () => {
           secret,
         }
       );
+      setName("");
+      setEmail("");
+      setPassword("");
+      setSecret("");
       setOk(data.ok);
     } catch (err) {
       toast.error(err.response.data);
@@ -106,7 +110,12 @@ const Register = () => {
             </div>
 
             <div className="form-group p-2">
-              <button className="btn btn-primary col-12">Submit</button>
+              <button
+                disabled={!name || !email || !password || !secret}
+                className="btn btn-primary col-12"
+              >
+                Submit
+              </button>
             </div>
           </form>
         </div>
