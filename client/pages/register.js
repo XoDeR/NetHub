@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Modal } from "antd";
 import Link from "next/link";
-import { SyncOulined } from "@ant-design/icons";
+import { SyncOutlined } from "@ant-design/icons";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -41,7 +41,7 @@ const Register = () => {
 
   return (
     <div className="container-fluid">
-      <div className="row py-5 bg-secondary text-light">
+      <div className="row py-5 text-light bg-default-image">
         <div className="col text-center">
           <h1>Register</h1>
         </div>
@@ -119,7 +119,7 @@ const Register = () => {
                 disabled={!name || !email || !password || !secret}
                 className="btn btn-primary col-12"
               >
-                {loading ? <SyncOulined spin className="py-1" /> : "Submit"}
+                {loading ? <SyncOutlined spin className="py-1" /> : "Submit"}
               </button>
             </div>
           </form>
