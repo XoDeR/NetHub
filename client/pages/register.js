@@ -15,12 +15,15 @@ const Register = () => {
     e.preventDefault();
     // console.log(name, email, password, secret);
     try {
-      const { data } = await axios.post("http://localhost:8000/api/register", {
-        name,
-        email,
-        password,
-        secret,
-      });
+      const { data } = await axios.post(
+        `${process.env.NEXT_PUBLIC_API}/register`,
+        {
+          name,
+          email,
+          password,
+          secret,
+        }
+      );
       setOk(data.ok);
     } catch (err) {
       toast.error(err.response.data);
