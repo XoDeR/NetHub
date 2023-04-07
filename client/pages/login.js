@@ -43,6 +43,8 @@ const Login = () => {
     }
   };
 
+  if (state && state.token) router.push("/");
+
   return (
     <div className="container-fluid">
       <div className="row py-5 text-light bg-default-image">
