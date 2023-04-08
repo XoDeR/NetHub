@@ -26,14 +26,19 @@ const Login = () => {
         password,
       });
 
-      setState({
-        user: data.user,
-        token: data.token,
-      });
+      if (data.error) {
+        toast.error(data.error);
+        setLoading(false);
+      } else {
+        setState({
+          user: data.user,
+          token: data.token,
+        });
 
-      window.localStorage.setItem("auth", JSON.stringify(data));
+        window.localStorage.setItem("auth", JSON.stringify(data));
 
-      router.push("/");
+        router.push("/");
+      }
     } catch (err) {
       toast.error(err.response.data);
       setLoading(false);
