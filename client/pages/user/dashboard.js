@@ -32,9 +32,10 @@ const Home = () => {
     const file = e.target.files[0];
     let formData = new FormData();
     formData.append("image", file);
-    console.log([...formData]);
+    // console.log([...formData]);
     try {
       const { data } = await axios.post("/upload-image", formData);
+      console.log("uploaded image =>", data);
     } catch (err) {
       console.log(err);
     }
