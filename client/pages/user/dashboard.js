@@ -17,13 +17,14 @@ const Home = () => {
     e.preventDefault();
     // console.log("post => ", content);
     try {
-      const { data } = await axios.post("/create-post", { content });
+      const { data } = await axios.post("/create-post", { content, image });
       console.log("create post response => ", data);
       if (data.error) {
         toast.error(data.error);
       } else {
         toast.success("Post created");
         setContent("");
+        setImage({});
       }
     } catch (err) {
       console.log(err);
