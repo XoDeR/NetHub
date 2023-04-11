@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 const Home = () => {
   const [state, setState] = useContext(UserContext);
   const [content, setContent] = useState("");
+  const [image, setImage] = useState({});
+  const [uploading, setUploading] = useState(false);
   const router = useRouter();
 
   const postSubmit = async (e) => {
@@ -33,11 +35,18 @@ const Home = () => {
     let formData = new FormData();
     formData.append("image", file);
     // console.log([...formData]);
+    setUploading(true);
     try {
       const { data } = await axios.post("/upload-image", formData);
-      console.log("uploaded image =>", data);
+      // console.log("uploaded image =>", data);
+      setImage({
+        url: data.url,
+        public_id: data.public_id,
+      });
+      setUploading(false);
     } catch (err) {
       console.log(err);
+      setUploading(false);
     }
   };
 
@@ -57,6 +66,8 @@ const Home = () => {
               setContent={setContent}
               postSubmit={postSubmit}
               handleImage={handleImage}
+              uploading={uploading}
+              image={image}
             />
           </div>
           <div className="col-md-4">Sidebar</div>
