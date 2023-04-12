@@ -2,7 +2,13 @@ import renderHTML from "react-render-html";
 import moment from "moment";
 import { Avatar } from "antd";
 import PostImage from "../images/PostImage";
-import { HeartOutlined, HeartFilled, CommentOutlined } from "@ant-design/icons";
+import {
+  HeartOutlined,
+  HeartFilled,
+  CommentOutlined,
+  EditOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 
 const PostList = ({ posts }) => {
   return (
@@ -29,6 +35,8 @@ const PostList = ({ posts }) => {
                 </div>
                 <CommentOutlined className="text-danger pt-2 h5 px-2" />
                 <div className="pt-2 pl-3">2 comments</div>
+                <EditOutlined className="text-danger pt-2 h5 px-2 mx-auto" />
+                <DeleteOutlined className="text-danger pt-2 h5 px-2" />
               </div>
             </div>
           </div>
