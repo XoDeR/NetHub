@@ -23,11 +23,11 @@ const PostList = ({ posts }) => {
             <div className="card-footer">
               {post.image && <PostImage url={post.image.url} />}
               <div className="d-flex pt-2">
-                <HeartOutlined className="text-danger pt-2 h5" />
+                <HeartOutlined className="text-danger pt-2 h5 px-2" />
                 <div className="pt-2 pl-3" style={{ marginRight: "1rem" }}>
                   3 likes
                 </div>
-                <CommentOutlined className="text-danger pt-2 h5 pl-5" />
+                <CommentOutlined className="text-danger pt-2 h5 px-2" />
                 <div className="pt-2 pl-3">2 comments</div>
               </div>
             </div>
