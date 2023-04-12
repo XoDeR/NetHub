@@ -11,9 +11,12 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 import { UserContext } from "../../context";
+import { useRouter } from "next/router";
 
 const PostList = ({ posts }) => {
   const [state] = useContext(UserContext);
+  const router = useRouter();
+
   return (
     <>
       {posts &&
@@ -43,7 +46,10 @@ const PostList = ({ posts }) => {
                   state.user &&
                   state.user._id === post.postedBy._id && (
                     <>
-                      <EditOutlined className="text-danger pt-2 h5 px-2 mx-auto" />
+                      <EditOutlined
+                        onClick={() => router.push(`/user/post/${post._id}`)}
+                        className="text-danger pt-2 h5 px-2 mx-auto"
+                      />
                       <DeleteOutlined className="text-danger pt-2 h5 px-2" />
                     </>
                   )}
