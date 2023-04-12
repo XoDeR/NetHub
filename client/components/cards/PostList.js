@@ -1,6 +1,7 @@
 import renderHTML from "react-render-html";
 import moment from "moment";
 import { Avatar } from "antd";
+import PostImage from "../images/PostImage";
 
 const PostList = ({ posts }) => {
   return (
@@ -19,10 +20,7 @@ const PostList = ({ posts }) => {
             </div>
             <div className="card-body">{renderHTML(post.content)}</div>
             <div className="card-footer">
-              <img
-                src={post.image && post.image.url}
-                alt={post.postedBy.name}
-              />
+              {post.image && <PostImage url={post.image.url} />}
               <div className="pt-3">like / unlike 3 likes 2 comments</div>
             </div>
           </div>
