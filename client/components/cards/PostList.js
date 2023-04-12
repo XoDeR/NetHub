@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import renderHTML from "react-render-html";
 import moment from "moment";
 import { Avatar } from "antd";
@@ -9,8 +10,10 @@ import {
   EditOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
+import { UserContext } from "../../context";
 
 const PostList = ({ posts }) => {
+  const [state] = useContext(UserContext);
   return (
     <>
       {posts &&
@@ -35,8 +38,15 @@ const PostList = ({ posts }) => {
                 </div>
                 <CommentOutlined className="text-danger pt-2 h5 px-2" />
                 <div className="pt-2 pl-3">2 comments</div>
-                <EditOutlined className="text-danger pt-2 h5 px-2 mx-auto" />
-                <DeleteOutlined className="text-danger pt-2 h5 px-2" />
+
+                {state &&
+                  state.user &&
+                  state.user._id === post.postedBy._id && (
+                    <>
+                      <EditOutlined className="text-danger pt-2 h5 px-2 mx-auto" />
+                      <DeleteOutlined className="text-danger pt-2 h5 px-2" />
+                    </>
+                  )}
               </div>
             </div>
           </div>
