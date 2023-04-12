@@ -38,6 +38,7 @@ const Home = () => {
       if (data.error) {
         toast.error(data.error);
       } else {
+        fetchUserPosts();
         toast.success("Post created");
         setContent("");
         setImage({});
