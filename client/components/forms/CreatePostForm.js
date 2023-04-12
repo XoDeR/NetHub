@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }); // dynamic import
 // import ReactQuill from "react-quill";
 import { CameraOutlined, LoadingOutlined } from "@ant-design/icons";
-
 import "react-quill/dist/quill.snow.css";
 
 const CreatePostForm = ({
