@@ -5,7 +5,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }); // dyna
 import { CameraOutlined, LoadingOutlined } from "@ant-design/icons";
 import "react-quill/dist/quill.snow.css";
 
-const CreatePostForm = ({
+const PostForm = ({
   content,
   setContent,
   postSubmit,
@@ -58,4 +58,4 @@ const CreatePostForm = ({
   );
 };
 
-export default CreatePostForm;
+export default PostForm;

@@ -1,29 +1,25 @@
-import { useContext, useState, useEffect } from "react";
-import { UserContext } from "../../context";
-import UserRoute from "../../components/routes/UserRoute";
-import PostForm from "../../components/forms/PostForm";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { toast } from "react-toastify";
-import PostList from "../../components/cards/PostList";
+import PostForm from "../../../components/forms/PostForm";
+import UserRoute from "../../../components/routes/UserRoute";
 
-const Home = () => {
-  const [state, setState] = useContext(UserContext);
+const EditPost = () => {
+  const [post, setPost] = useState({});
   const [content, setContent] = useState("");
   const [image, setImage] = useState({});
   const [uploading, setUploading] = useState(false);
-  const [posts, setPosts] = useState([]);
   const router = useRouter();
+  const _id = router.query._id;
 
   useEffect(() => {
-    if (state && state.token) fetchUserPosts();
-  }, [state && state.token]);
+    if (_id) fetchPost();
+  }, [_id]);
 
-  const fetchUserPosts = async () => {
+  const fetchPost = async () => {
     try {
-      const { data } = await axios.get("/user-posts");
-      // console.log("user posts => ", data);
-      setPosts(data);
+      const { data } = await axios.get(`/user-post/${_id}`);
+      setPost(data);
     } catch (err) {
       console.log(err);
     }
@@ -31,21 +27,7 @@ const Home = () => {
 
   const postSubmit = async (e) => {
     e.preventDefault();
-    // console.log("post => ", content);
-    try {
-      const { data } = await axios.post("/create-post", { content, image });
-      console.log("create post response => ", data);
-      if (data.error) {
-        toast.error(data.error);
-      } else {
-        fetchUserPosts();
-        toast.success("Post created");
-        setContent("");
-        setImage({});
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    console.log("Submit post to update");
   };
 
   const handleImage = async (e) => {
@@ -78,7 +60,7 @@ const Home = () => {
         </div>
 
         <div className="row py-3">
-          <div className="col-md-8">
+          <div className="col-md-8 offset-md-2">
             <PostForm
               content={content}
               setContent={setContent}
@@ -87,17 +69,11 @@ const Home = () => {
               uploading={uploading}
               image={image}
             />
-            <br />
-            <PostList posts={posts} />
           </div>
-
-          {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}
-
-          <div className="col-md-4">Sidebar</div>
         </div>
       </div>
     </UserRoute>
   );
 };
 
-export default Home;
+export default EditPost;

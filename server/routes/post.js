@@ -5,7 +5,12 @@ const router = express.Router();
 
 import { requireSignIn } from "../middlewares";
 
-import { createPost, uploadImage, postsByUser } from "../controllers/post";
+import {
+  createPost,
+  uploadImage,
+  postsByUser,
+  userPost,
+} from "../controllers/post";
 
 router.post("/create-post", requireSignIn, createPost);
 router.post(
@@ -16,5 +21,6 @@ router.post(
 );
 
 router.get("/user-posts", requireSignIn, postsByUser);
+router.get("/user-post/:_id", requireSignIn, userPost);
 
 module.exports = router;
