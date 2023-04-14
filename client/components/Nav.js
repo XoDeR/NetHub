@@ -32,51 +32,37 @@ const Nav = () => {
         </a>
       </Link>
 
-      <div className="dropdown">
-        <a
-          className="btn btn-secondary dropdown-toggle"
-          href="#"
-          role="button"
-          id="dropdownMenuLink"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Dropdown link
-        </a>
-        <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li>
-            <a className="dropdown-item" href="#">
-              Action
-            </a>
-          </li>
-          <li>
-            <a className="dropdown-item" href="#">
-              Another action
-            </a>
-          </li>
-          <li>
-            <a className="dropdown-item" href="#">
-              Something else here
-            </a>
-          </li>
-        </ul>
-      </div>
-
       {state !== null ? (
         <>
-          <Link href="/user/dashboard">
+          <div className="dropdown">
             <a
-              className={`nav-link text-light ${
-                current === "/user/dashboard" && "active"
-              }`}
+              className="btn dropdown-toggle text-light"
+              role="button"
+              id="dropdownMenuLink"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
               {state && state.user && state.user.name}
             </a>
-          </Link>
-
-          <a onClick={logout} className="nav-link text-light">
-            Logout
-          </a>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li>
+                <Link href="/user/dashboard">
+                  <a
+                    className={`nav-link dropdown-item ${
+                      current === "/user/dashboard" && "active"
+                    }`}
+                  >
+                    Dashboard
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <a onClick={logout} className="nav-link">
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
         </>
       ) : (
         <>
