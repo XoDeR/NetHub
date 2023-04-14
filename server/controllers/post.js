@@ -61,3 +61,15 @@ export const userPost = async (req, res) => {
     console.log(err);
   }
 };
+
+export const updatePost = async (req, res) => {
+  // console.log("post update controller => ", req.body);
+  try {
+    const post = await Post.findByIdAndUpdate(req.params._id, req.body, {
+      new: true,
+    });
+    req.json(post);
+  } catch (err) {
+    console.log(err);
+  }
+};
