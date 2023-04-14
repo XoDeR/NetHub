@@ -65,10 +65,31 @@ export const userPost = async (req, res) => {
 export const updatePost = async (req, res) => {
   // console.log("post update controller => ", req.body);
   try {
-    const post = await Post.findByIdAndUpdate(req.params._id, req.body, {
+    const oldPost = await Post.findById(req.params._id);
+    const newPost = await Post.findByIdAndUpdate(req.params._id, req.body, {
       new: true,
     });
-    res.json(post);
+
+    if (oldPost.image && oldPost.image.public_id) {
+      let needToDeleteOldImage = false;
+      if (newPost.image && newPost.image.public_id) {
+        if (oldPost.image.public_id === newPost.image.public_id) {
+          // keep the image
+        } else {
+          needToDeleteOldImage = true;
+        }
+      } else {
+        needToDeleteOldImage = true;
+      }
+
+      if (needToDeleteOldImage === true) {
+        const image = await cloudinary.uploader.destroy(
+          oldPost.image.public_id
+        );
+      }
+    }
+
+    res.json(newPost);
   } catch (err) {
     console.log(err);
   }
