@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import PostForm from "../../../components/forms/PostForm";
 import UserRoute from "../../../components/routes/UserRoute";
+import { toast } from "react-toastify";
 
 const EditPost = () => {
   const [post, setPost] = useState({});
@@ -20,6 +21,8 @@ const EditPost = () => {
     try {
       const { data } = await axios.get(`/user-post/${_id}`);
       setPost(data);
+      setContent(data.content);
+      setImage(data.image);
     } catch (err) {
       console.log(err);
     }
@@ -27,7 +30,17 @@ const EditPost = () => {
 
   const postSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submit post to update");
+    try {
+      const data = await axios.put(`/update-post/${_id}`, { content, image });
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        toast.success("Post updated.");
+        router.push("/user/dashboard");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleImage = async (e) => {
