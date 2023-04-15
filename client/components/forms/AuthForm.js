@@ -29,7 +29,7 @@ const AuthForm = ({
           onChange={(e) => setUsername(e.target.value)}
           type="text"
           className="form-control"
-          placeholder="Enter name"
+          placeholder="Enter username"
         />
       </div>
     )}

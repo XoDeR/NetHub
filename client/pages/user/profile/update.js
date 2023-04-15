@@ -44,15 +44,18 @@ const ProfileUpdate = () => {
         secret,
       });
 
+      console.log("update response => ", data);
       if (data.error) {
         toast.error(data.error);
         setLoading(false);
       } else {
-        setOk(data.ok);
+        setOk(true);
         setLoading(false);
       }
     } catch (err) {
-      toast.error(err.response.data);
+      if (err && err.response && err.response.data) {
+        toast.error(err.response.data);
+      }
       setLoading(false);
     }
   };
@@ -84,6 +87,19 @@ const ProfileUpdate = () => {
             setSecret={setSecret}
             loading={loading}
           />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col">
+          <Modal
+            title="Congratulations!"
+            visible={ok}
+            onCancel={() => setOk(false)}
+            footer={null}
+          >
+            <p>You have successfully updated your profile.</p>
+          </Modal>
         </div>
       </div>
     </div>
