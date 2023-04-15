@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Modal } from "antd";
@@ -20,12 +20,24 @@ const ProfileUpdate = () => {
   const [state] = useContext(UserContext);
   const router = useRouter();
 
+  useEffect(() => {
+    if (state && state.user) {
+      // console.log("user from state => ", state.user);
+      setUsername(state.user.username);
+      setAbout(state.user.about);
+      setName(state.user.name);
+      setEmail(state.user.email);
+    }
+  }, [state && state.user]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(name, email, password, secret);
     try {
       setLoading(true);
-      const { data } = await axios.post(`/register`, {
+      const { data } = await axios.put(`/profile-update`, {
+        username,
+        about,
         name,
         email,
         password,
@@ -36,10 +48,6 @@ const ProfileUpdate = () => {
         toast.error(data.error);
         setLoading(false);
       } else {
-        setName("");
-        setEmail("");
-        setPassword("");
-        setSecret("");
         setOk(data.ok);
         setLoading(false);
       }
@@ -76,33 +84,6 @@ const ProfileUpdate = () => {
             setSecret={setSecret}
             loading={loading}
           />
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col">
-          <Modal
-            title="Congratulations!"
-            visible={ok}
-            onCancel={() => setOk(false)}
-            footer={null}
-          >
-            <p>You have successfully registered.</p>
-            <Link href="/login">
-              <a className="btn btn-primary btn-sm">Login</a>
-            </Link>
-          </Modal>
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col">
-          <p className="text-center">
-            Already registered?{" "}
-            <Link href="/login">
-              <a>Login</a>
-            </Link>
-          </p>
         </div>
       </div>
     </div>
