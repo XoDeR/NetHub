@@ -146,6 +146,9 @@ export const profileUpdate = async (req, res) => {
     if (req.body.secret) {
       data.secret = req.body.secret;
     }
+    if (req.body.image) {
+      data.image = req.body.image;
+    }
 
     let user = await User.findByIdAndUpdate(req.user._id, data, {
       new: true,
