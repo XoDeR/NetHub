@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { UserContext } from "../../context";
 import user from "../../../server/models/user";
 
-const People = ({ people }) => {
+const People = ({ people, handleFollow }) => {
   const [state] = useContext(UserContext);
 
   const router = useRouter();
@@ -29,7 +29,13 @@ const People = ({ people }) => {
               avatar={<Avatar src={imageSource(user)} />}
               title={
                 <div className="d-flex justify-content-between">
-                  {user.username} <span className="text-primary">Follow</span>
+                  {user.username}{" "}
+                  <span
+                    onClick={() => handleFollow(user)}
+                    className="text-primary pointer"
+                  >
+                    Follow
+                  </span>
                 </div>
               }
             />
