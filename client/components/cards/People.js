@@ -10,7 +10,7 @@ const People = ({ people }) => {
 
   const router = useRouter();
 
-  const imageSource = () => {
+  const imageSource = (user) => {
     if (user.image) {
       return user.image.url;
     } else {
