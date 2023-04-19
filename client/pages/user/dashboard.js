@@ -94,6 +94,16 @@ const Home = () => {
     }
   };
 
+  const handleFollow = async (user) => {
+    // console.log("Add this user to 'following' list", user);
+    try {
+      const { data } = await axios.put("/user-follow", { _id: user._id });
+      console.log("Handle follow response => ", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <UserRoute>
       <div className="container-fluid">
@@ -120,7 +130,7 @@ const Home = () => {
           {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}
 
           <div className="col-md-4">
-            <People people={people} />
+            <People people={people} handleFollow={handleFollow} />
           </div>
         </div>
       </div>
