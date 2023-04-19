@@ -142,7 +142,7 @@ const ProfileUpdate = () => {
         <div className="col">
           <Modal
             title="Congratulations!"
-            visible={ok}
+            open={ok}
             onCancel={() => setOk(false)}
             footer={null}
           >
