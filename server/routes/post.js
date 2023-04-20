@@ -8,10 +8,10 @@ import { requireSignIn, canEditDeletePost } from "../middlewares";
 import {
   createPost,
   uploadImage,
-  postsByUser,
   userPost,
   updatePost,
   deletePost,
+  newsFeed,
 } from "../controllers/post";
 
 router.post("/create-post", requireSignIn, createPost);
@@ -22,7 +22,6 @@ router.post(
   uploadImage
 );
 
-router.get("/user-posts", requireSignIn, postsByUser);
 router.get("/user-post/:_id", requireSignIn, userPost);
 router.put("/update-post/:_id", requireSignIn, canEditDeletePost, updatePost);
 router.delete(
@@ -31,5 +30,7 @@ router.delete(
   canEditDeletePost,
   deletePost
 );
+
+router.get("/news-feed", requireSignIn, newsFeed);
 
 module.exports = router;
