@@ -29,7 +29,7 @@ const People = ({ people, handleFollow }) => {
               avatar={<Avatar src={imageSource(user)} />}
               title={
                 <div className="d-flex justify-content-between">
-                  {user.username}{" "}
+                  {user.username} {user.name}{" "}
                   <span
                     onClick={() => handleFollow(user)}
                     className="text-primary pointer"
