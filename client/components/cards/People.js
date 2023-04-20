@@ -3,7 +3,6 @@ import { Avatar, List } from "antd";
 import moment from "moment";
 import { useRouter } from "next/router";
 import { UserContext } from "../../context";
-import user from "../../../server/models/user";
 
 const People = ({ people, handleFollow }) => {
   const [state] = useContext(UserContext);
