@@ -144,8 +144,10 @@ const Home = () => {
     setVisible(true);
   };
 
-  const addComment = async () => {
-    //
+  const addComment = async (e) => {
+    e.preventDefault();
+    console.log("Add a coment to this post id", currentPost._id);
+    console.log("Comment", comment);
   };
 
   const removeComment = async () => {
@@ -199,7 +201,18 @@ const Home = () => {
           title="Comment"
           footer={null}
         >
-          Comment form
+          <form onSubmit={addComment}>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Write something..."
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button className="btn btn-primary btn-sm btn-block mt-3">
+              Submit
+            </button>
+          </form>
         </Modal>
       </div>
     </UserRoute>
