@@ -6,9 +6,10 @@ import { UserContext } from "../../context";
 import axios from "axios";
 import { RollbackOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const Following = () => {
-  const [state] = useContext(UserContext);
+  const [state, setState] = useContext(UserContext);
   const [people, setPeople] = useState([]);
   const router = useRouter();
 
@@ -34,8 +35,19 @@ const Following = () => {
     }
   };
 
-  const handleUnfollow = async () => {
-    //
+  const handleUnfollow = async (user) => {
+    try {
+      const { data } = await axios.put("/user-unfollow", { _id: user._id });
+      let auth = JSON.parse(localStorage.getItem("auth"));
+      auth.user = data;
+      localStorage.setItem("auth", JSON.stringify(auth));
+      setState({ ...state, user: data });
+      let filtered = people.filter((p) => p._id !== user._id);
+      setPeople(filtered);
+      toast.error(`Unfollowed ${user.name}`);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
