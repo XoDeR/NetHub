@@ -147,8 +147,20 @@ const Home = () => {
 
   const addComment = async (e) => {
     e.preventDefault();
-    console.log("Add a coment to this post id", currentPost._id);
-    console.log("Comment", comment);
+    // console.log("Add a comment to this post id", currentPost._id);
+    // console.log("Comment", comment);
+    try {
+      const { data } = await axios.put("/add-comment", {
+        postId: currentPost._id,
+        comment,
+      });
+      console.log("add comment", data);
+      setComment("");
+      setVisible(false);
+      newsFeed();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const removeComment = async () => {
