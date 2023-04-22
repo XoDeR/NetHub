@@ -13,6 +13,7 @@ import {
 import { UserContext } from "../../context";
 import { useRouter } from "next/router";
 import { imageSource } from "../../functions";
+import Link from "next/link";
 
 const PostList = ({
   posts,
@@ -66,7 +67,11 @@ const PostList = ({
                   onClick={() => handleComment(post)}
                   className="text-danger pt-2 h5 px-2"
                 />
-                <div className="pt-2 pl-3">{post.comments.length} comments</div>
+                <div className="pt-2 pl-3">
+                  <Link href={`/post/${post._id}`}>
+                    <a>{post.comments.length} comments</a>
+                  </Link>
+                </div>
 
                 {state &&
                   state.user &&
@@ -84,6 +89,28 @@ const PostList = ({
                   )}
               </div>
             </div>
+            {post.comments && post.comments.length > 0 && (
+              <ol className="list-group">
+                {post.comments.map((c) => (
+                  <li className="list-group-item d-flex justify-content-between align-items-start">
+                    <div className="ms-2 me-auto">
+                      <div>
+                        <Avatar
+                          size={20}
+                          className="mb-1 mr-3"
+                          src={imageSource(c.postedBy)}
+                        />
+                        {c.postedBy.name}
+                      </div>
+                      <div>{c.text}</div>
+                    </div>
+                    <span className="badge rounded-pill text-muted">
+                      {moment(c.created).fromNow()}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            )}
           </div>
         ))}
     </>
