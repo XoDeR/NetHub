@@ -49,7 +49,7 @@ const Home = () => {
     // console.log("post => ", content);
     try {
       const { data } = await axios.post("/create-post", { content, image });
-      console.log("create post response => ", data);
+      // console.log("create post response => ", data);
       if (data.error) {
         toast.error(data.error);
       } else {
