@@ -1,7 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 import { Avatar, List } from "antd";
-import moment from "moment";
-import { useRouter } from "next/router";
 import { UserContext } from "../../context";
 import axios from "axios";
 import { RollbackOutlined } from "@ant-design/icons";
@@ -11,7 +9,6 @@ import { toast } from "react-toastify";
 const Following = () => {
   const [state, setState] = useContext(UserContext);
   const [people, setPeople] = useState([]);
-  const router = useRouter();
 
   useEffect(() => {
     if (state && state.token) fetchFollowing();
@@ -20,7 +17,7 @@ const Following = () => {
   const fetchFollowing = async () => {
     try {
       const { data } = await axios.get("/user-following");
-      console.log("following =>", data);
+      // console.log("following =>", data);
       setPeople(data);
     } catch (err) {
       console.log(err);
