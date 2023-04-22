@@ -46,7 +46,6 @@ const PostList = ({
               <div className="d-flex pt-2">
                 {state &&
                 state.user &&
-                state.user._id &&
                 post.likes &&
                 post.likes.includes(state.user._id) ? (
                   <HeartFilled
@@ -67,7 +66,7 @@ const PostList = ({
                   onClick={() => handleComment(post)}
                   className="text-danger pt-2 h5 px-2"
                 />
-                <div className="pt-2 pl-3">2 comments</div>
+                <div className="pt-2 pl-3">{post.comments.length} comments</div>
 
                 {state &&
                   state.user &&
