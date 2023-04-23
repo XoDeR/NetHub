@@ -49,7 +49,7 @@ const ProfileUpdate = () => {
         image,
       });
 
-      console.log("update response => ", data);
+      // console.log("update response => ", data);
       if (data.error) {
         toast.error(data.error);
         setLoading(false);
