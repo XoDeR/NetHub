@@ -31,6 +31,7 @@ const PostList = ({
       {posts &&
         posts.map((post) => (
           <Post
+            key={post._id}
             post={post}
             handleDelete={handleDelete}
             handleLike={handleLike}
