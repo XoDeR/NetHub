@@ -69,6 +69,7 @@ const Home = () => {
       if (data.error) {
         toast.error(data.error);
       } else {
+        setPage(1);
         newsFeed();
         toast.success("Post created");
         setContent("");
