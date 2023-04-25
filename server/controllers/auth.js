@@ -242,3 +242,19 @@ export const userUnfollow = async (req, res) => {
     console.log(err);
   }
 };
+
+export const searchUser = async (req, res) => {
+  const { query } = req.params;
+  if (!query) return;
+  try {
+    const user = await User.find({
+      $or: [
+        { name: { $regex: query, $options: "i" } },
+        { username: { $regex: query, $options: "i" } },
+      ],
+    }).select("_id name username image");
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+  }
+};
