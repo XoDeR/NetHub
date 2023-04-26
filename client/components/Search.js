@@ -20,6 +20,14 @@ const Search = () => {
     }
   };
 
+  const handleFollow = async (user) => {
+    console.log("follow");
+  };
+
+  const handleUnfollow = async (user) => {
+    console.log("unfollow");
+  };
+
   return (
     <>
       <form className="form-inline row pt-2" onSubmit={searchUser}>
@@ -42,7 +50,13 @@ const Search = () => {
         </div>
       </form>
 
-      {result.length > 0 && <People people={result} />}
+      {result.length > 0 && (
+        <People
+          people={result}
+          handleFollow={handleFollow}
+          handleUnfollow={handleUnfollow}
+        />
+      )}
     </>
   );
 };
