@@ -17,6 +17,7 @@ import {
   addComment,
   removeComment,
   totalPosts,
+  posts,
 } from "../controllers/post";
 
 router.post("/create-post", requireSignIn, createPost);
@@ -45,5 +46,7 @@ router.put("/add-comment", requireSignIn, addComment);
 router.put("/remove-comment", requireSignIn, removeComment);
 
 router.get("/total-posts", totalPosts);
+
+router.get("/posts", posts);
 
 module.exports = router;
