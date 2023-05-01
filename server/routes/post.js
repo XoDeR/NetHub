@@ -18,6 +18,7 @@ import {
   removeComment,
   totalPosts,
   posts,
+  getPost,
 } from "../controllers/post";
 
 router.post("/create-post", requireSignIn, createPost);
@@ -48,5 +49,7 @@ router.put("/remove-comment", requireSignIn, removeComment);
 router.get("/total-posts", totalPosts);
 
 router.get("/posts", posts);
+
+router.get("/post/:_id", getPost);
 
 module.exports = router;
