@@ -60,9 +60,7 @@ const PostPublic = ({
               </div>
               <CommentOutlined className="text-danger pt-2 h5 px-2" />
               <div className="pt-2 pl-3">
-                <Link href={`/post/${post._id}`}>
-                  <a>{post.comments.length} comments</a>
-                </Link>
+                <a>{post.comments.length} comments</a>
               </div>
             </div>
           </div>
