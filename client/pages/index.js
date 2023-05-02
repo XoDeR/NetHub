@@ -1,13 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../context";
 import ParallaxBg from "../components/cards/ParallaxBg";
 import axios from "axios";
 import PostPublic from "../components/cards/PostPublic";
 import Head from "next/head";
 import Link from "next/link";
+import io from "socket.io-client";
+
+const socket = io(process.env.NEXT_PUBLIC_SOCKETIO, {
+  reconnection: true,
+});
 
 const Home = ({ posts }) => {
   const [state, setState] = useContext(UserContext);
+
+  useEffect(() => {
+    console.log("SocketIO on join", socket);
+  }, []);
 
   const head = () => (
     <Head>
