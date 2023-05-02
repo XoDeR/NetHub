@@ -59,9 +59,7 @@ const PostPublic = ({
                 {post.likes.length} likes
               </div>
               <CommentOutlined className="text-danger pt-2 h5 px-2" />
-              <div className="pt-2 pl-3">
-                <a>{post.comments.length} comments</a>
-              </div>
+              <div className="pt-2 pl-3">{post.comments.length} comments</div>
             </div>
           </div>
           {post.comments && post.comments.length > 0 && (
