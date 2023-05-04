@@ -2,7 +2,7 @@ import express from "express";
 
 const router = express.Router();
 
-import { requireSignIn } from "../middlewares";
+import { requireSignIn, isAdmin } from "../middlewares";
 
 import {
   register,
@@ -34,5 +34,7 @@ router.get("/user-following", requireSignIn, userFollowing);
 
 router.get("/search-user/:query", searchUser);
 router.get("/user/:username", getUser);
+
+router.get("/current-admin", requireSignIn, isAdmin, currentUser);
 
 module.exports = router;
