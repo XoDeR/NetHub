@@ -33,8 +33,19 @@ app.use(
 
 readdirSync("./routes").map((r) => app.use("/api", require(`./routes/${r}`)));
 
+// io.on("connect", (socket) => {
+//   // console.log("Socket.IO", socket.id);
+//   socket.on("send-message", (message) => {
+//     // console.log("new message received => ", message);
+//     socket.broadcast.emit("receive-message", message);
+//   });
+// });
+
 io.on("connect", (socket) => {
-  console.log("Socket.IO", socket.id);
+  socket.on("new-post", (newPost) => {
+    // console.log("SocketIO new post => ", newPost);
+    socket.broadcast.emit("new-post", newPost);
+  });
 });
 
 const port = process.env.PORT || 8000;
